@@ -1,0 +1,134 @@
+{
+  "$type": "Sitecore.Commerce.Core.PolicySet, Sitecore.Commerce.Core",
+  "Id": "Entity-PolicySet-CategoryMappingPolicySet",
+  "Version": 1,
+  "IsPersisted": false,
+  "Name": "CategoryMappingPolicySet",
+  "Policies": {
+    "$type": "System.Collections.Generic.List`1[[Sitecore.Commerce.Core.Policy, Sitecore.Commerce.Core]], mscorlib",
+    "$values": [
+      {
+        "$type": "Plugin.Sync.Commerce.CatalogImport.Policies.CategoryMappingPolicy, Plugin.Sync.Commerce.CatalogImport",
+        "SyncedItemsList": "ImportedItems",
+        "MappingConfigurations": {
+          "$type": "System.Collections.Generic.List`1[[Plugin.Sync.Commerce.CatalogImport.Policies.MappingConfiguration, Plugin.Sync.Commerce.CatalogImport]], mscorlib",
+          "$values": [
+            {
+              "EntityType": "M.PCM.ProductFamily",
+              "AllowSycToRoot": false,
+              "ClearMissingFieldValues": true,
+              "EntityIdPath": "id",
+              "EntityNamePath": "id",
+              "ParentEntityIdPath": "id",
+              "ParentEntityNamePath": "id",
+              "CatalogName": "Quadfecta",
+              "SourceName": "quadfecta.stylelabsdev.com",
+              "FieldPaths": {
+                "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib",
+                "DisplayName": "properties.ProductFamilyLabel.en-US",
+                "Description": "properties.ProductFamilyLongDescription.en-US"
+              },
+              "RelatedEntityPaths": {
+                "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[System.String, mscorlib]]]], mscorlib",
+                "ParentEntityIdPath": [
+                  "relations.PCMProductCategoryToProductFamily.href",
+                  "parents[*].href"
+                ],
+                "ParentEntityNamePath": [
+                  "relations.PCMProductCategoryToProductFamily.href",
+                  "parents[*].href"
+                ]
+              }
+            },
+            {
+              "EntityType": "M.PCM.ProductCategory",
+              "AllowSycToRoot": true,
+              "ClearMissingFieldValues": true,
+              "EntityIdPath": "id",
+              "EntityNamePath": "id",
+              "CatalogName": "Quadfecta",
+              "SourceName": "quadfecta.stylelabsdev.com",
+              "FieldPaths": {
+                "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib",
+                "DisplayName": "properties.ProductCategoryLabel.en-US",
+                "Description": "properties.ProductCategoryDescription.en-US",
+                "Synonyms": "properties.ProductCategorySynonyms.en-US"
+              }
+            },
+            {
+              "EntityType": "M.PCM.ProductFamily",
+              "AllowSycToRoot": false,
+              "ClearMissingFieldValues": true,
+              "EntityIdPath": "id",
+              "EntityNamePath": "id",
+              "ParentEntityIdPath": "id",
+              "ParentEntityNamePath": "id",
+              "CatalogName": "Outdoors",
+              "SourceName": "xcdemo.stylelabsdev.com",
+              "MasterAsset": "public_link",
+              "Assets": "public_link",
+              "FieldPaths": {
+                "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib",
+                "DisplayName": "properties.ProductFamilyLabel.en-US",
+                "Description": "properties.ProductFamilyShortDescription.en-US",
+                "MasterAsset": "public_link",
+                "Assets": "public_link"
+              },
+              "RelatedEntityPaths": {
+                "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[System.String, mscorlib]]]], mscorlib",
+                "ParentEntityIdPath": [
+                  "relations.PCMProductCategoryToProductFamily.href",
+                  "parents[*].href"
+                ],
+                "ParentEntityNamePath": [
+                  "relations.PCMProductCategoryToProductFamily.href",
+                  "parents[*].href"
+                ],
+                "MasterAsset": [
+                  "relations.PCMProductFamilyToMasterAsset.href",
+                  "children[*].href",
+                  "relations.AssetToPublicLink.href",
+                  "children[*].href"
+                ],
+                "Assets": [
+                  "relations.PCMProductFamilyToAsset.href",
+                  "children[*].href",
+                  "relations.AssetToPublicLink.href",
+                  "children[*].href"
+                ]
+              }
+            },
+            {
+              "EntityType": "M.PCM.ProductCategory",
+              "AllowSycToRoot": true,
+              "ClearMissingFieldValues": true,
+              "EntityIdPath": "id",
+              "EntityNamePath": "id",
+              "CatalogName": "Outdoors",
+              "SourceName": "xcdemo.stylelabsdev.com",
+              "FieldPaths": {
+                "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib",
+                "DisplayName": "properties.ProductCategoryLabel.en-US",
+                "Description": "properties.ProductCategoryDescription.en-US",
+                "Synonyms": "properties.ProductCategorySynonyms.en-US",
+                "MenuSection": "properties.PCMCategoryToMenuSection.labels.en-US",
+                "Icon": "properties.['Entity.Visualization'].icon",
+                "Color": "properties.['Entity.Visualization'].color",
+                "MasterAsset": "public_link"
+              },
+              "RelatedEntityPaths": {
+                "$type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[System.String, mscorlib]]]], mscorlib",
+                "MasterAsset": [
+                  "relations.PCMProductCategoryToMasterAsset.href",
+                  "children[*].href",
+                  "relations.AssetToPublicLink.href",
+                  "children[*].href"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
