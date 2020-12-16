@@ -11,10 +11,13 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Components\**" />
     <Compile Remove="Pipelines\Helper\**" />
     <Compile Remove="Pipelines\ViewBlocks\**" />
+    <EmbeddedResource Remove="Components\**" />
     <EmbeddedResource Remove="Pipelines\Helper\**" />
     <EmbeddedResource Remove="Pipelines\ViewBlocks\**" />
+    <None Remove="Components\**" />
     <None Remove="Pipelines\Helper\**" />
     <None Remove="Pipelines\ViewBlocks\**" />
   </ItemGroup>
@@ -63,10 +66,6 @@
     <Reference Include="Sitecore.Commerce.Plugin.SQL">
       <HintPath>..\..\..\..\..\websites\CommerceAuthoring_Sc910\Sitecore.Commerce.Plugin.SQL.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

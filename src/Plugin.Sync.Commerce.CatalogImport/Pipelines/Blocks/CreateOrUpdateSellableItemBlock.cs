@@ -1,5 +1,4 @@
-﻿using Plugin.Sync.Commerce.CatalogImport.Extensions;
-using Plugin.Sync.Commerce.CatalogImport.Models;
+﻿using Plugin.Sync.Commerce.CatalogImport.Models;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Serilog;
 using Sitecore.Commerce.Core;
@@ -7,18 +6,14 @@ using Sitecore.Commerce.Core.Commands;
 using Sitecore.Commerce.Plugin.Catalog;
 using Sitecore.Commerce.Plugin.Composer;
 using Sitecore.Commerce.Plugin.ManagedLists;
-using Sitecore.Commerce.Plugin.Pricing;
 using Sitecore.Framework.Conditions;
 using Sitecore.Framework.Pipelines;
-using Sitecore.Rules.Conditions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
 {
-
     /// <summary>
     /// Import data into an existing or a new SellableItem entity
     /// </summary>
@@ -29,7 +24,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
         private readonly GetManagedListCommand _getManagedListCommand;
         private readonly DeleteRelationshipCommand _deleteRelationshipCommand;
         private readonly CommerceCommander _commerceCommander;
-        private readonly CommerceEntityImportHelper _importHelper;
         #endregion
 
         #region Public methods
@@ -45,7 +39,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
             _commerceCommander = commerceCommander;
             _deleteRelationshipCommand = deleteRelationshipCommand;
             _getManagedListCommand = getManagedListCommand;
-            _importHelper = new CommerceEntityImportHelper(commerceCommander, composerCommander);
         }
 
         /// <summary>
@@ -121,7 +114,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
         #region Private methods
         public async Task DisassociateParentCategories(SellableItem sellableItem, CommerceContext context)
         {
-
             var parentCategorySitecoreIds = sellableItem?.ParentCategoryList?.Split('|');
             if (parentCategorySitecoreIds == null || parentCategorySitecoreIds.Length == 0)
             {
@@ -143,6 +135,7 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
                 }
             }
         }
+
         /// <summary>
         /// Associate SellableItem with parent Catalog and Category(if exists)
         /// </summary>
@@ -218,25 +211,11 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
                 await _commerceCommander.Pipeline<IPersistEntityPipeline>().Run(new PersistEntityArgument(sellableItem), context).ConfigureAwait(false);
             }
 
-            //if (entityData.ListPrice != null && entityData.ListPrice.HasValue && entityData.ListPrice > 0)
-            //{
-            //    var moneyPrice = new Money("USD", entityData.ListPrice.Value);
-            //    sellableItem.ListPrice = moneyPrice;
-            //    var pricingPolicy = sellableItem.GetPolicy<ListPricingPolicy>();
-            //    pricingPolicy.AddPrice(new Money("USD", entityData.ListPrice.Value));
-            //}
-            //else
-            //{
-            //    sellableItem.ListPrice = null;
-            //    var pricingPolicy = sellableItem.GetPolicy<ListPricingPolicy>();
-            //    pricingPolicy.ClearPrices();
-            //}
 
             await _commerceCommander.Pipeline<IPersistEntityPipeline>().Run(new PersistEntityArgument(sellableItem), context).ConfigureAwait(false);
 
             return await _commerceCommander.Command<FindEntityCommand>().Process(context.CommerceContext, typeof(SellableItem), sellableItem.Id) as SellableItem;
         }
-
         #endregion
     }
 }

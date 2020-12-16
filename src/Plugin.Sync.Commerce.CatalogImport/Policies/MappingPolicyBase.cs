@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Sitecore.Commerce.Core;
 using System.Collections.Generic;
-using Sitecore.Commerce.Core;
-
 
 namespace Plugin.Sync.Commerce.CatalogImport.Policies
 {

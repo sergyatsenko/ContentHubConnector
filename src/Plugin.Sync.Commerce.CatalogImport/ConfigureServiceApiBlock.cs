@@ -27,14 +27,12 @@ namespace Plugin.Sync.Commerce.CatalogImport
             var importSellableItemFromContentHub = modelBuilder.Action("ImportSellableItemFromContentHub");
             importSellableItemFromContentHub.ReturnsFromEntitySet<CommerceCommand>("Commands");
 
-            var importSellableItemsFromContentHub = modelBuilder.Action("ImportSellableItemsFromContentHub");
-            importSellableItemsFromContentHub.ReturnsFromEntitySet<CommerceCommand>("Commands");
-
             var importCategoryFromContentHub = modelBuilder.Action("ImportCategoryFromContentHub");
             importCategoryFromContentHub.ReturnsFromEntitySet<CommerceCommand>("Commands");
 
-            var processAzureQueue = modelBuilder.Action("ProcessAzureQueue");
-            processAzureQueue.ReturnsFromEntitySet<CommerceCommand>("Commands");
+            //TODO: add suppot for SellableItem variants
+            //var importSellableItemVariantFromContentHub = modelBuilder.Action("ImportSellableItemVariantFromContentHub");
+            //importSellableItemVariantFromContentHub.ReturnsFromEntitySet<CommerceCommand>("Commands");
 
             return Task.FromResult(modelBuilder);
         }

@@ -13,7 +13,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Policies
         public string EntityNamePath { get; set; }
         public string ParentEntityIdPath { get; set; }
         public string ParentEntityNamePath { get; set; }
-        //public string ListPricePath { get; set; }
         public string SourceName { get; set; }
         public string CatalogName { get; set; }
         public Dictionary<string, string> FieldPaths { get; set; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);

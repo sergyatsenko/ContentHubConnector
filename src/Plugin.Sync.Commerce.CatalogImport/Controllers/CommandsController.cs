@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json.Linq;
 using Plugin.Sync.Commerce.CatalogImport.Commands;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
@@ -11,32 +7,22 @@ using Plugin.Sync.Commerce.CatalogImport.Policies;
 using Sitecore.Commerce.Core;
 using Sitecore.Commerce.Core.Commands;
 using Sitecore.Commerce.Plugin.Catalog;
-using Sitecore.Diagnostics;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Plugin.Sync.Commerce.CatalogImport.Controllers
 {
     /// <summary>
-    /// Catalog Entities Import Controller
+    /// SXC Controller to expose Content Hub import pipelines as REST API in SXC Engine
     /// </summary>
     public class CommandsController : CommerceController
     {
         private readonly GetEnvironmentCommand _getEnvironmentCommand;
 
-        //TODO: move below consts into CH connection policy
-        //static string _connectionString = "Endpoint=sb://xccontenthubdemo.servicebus.windows.net/;SharedAccessKeyName=products_content;SharedAccessKey=yK0BD0C+ijNNWfl3cUJdmOJgC4MT/QSZZFqAAir7MZQ=";
-        static string _connectionString; // = "Endpoint=sb://xccontenthubdemo.servicebus.windows.net/;SharedAccessKeyName=ManageSendListenAccessKey;SharedAccessKey=XWWm4N78ZewXzLJHkA0C1wxwqaFBABQFrKth8/U+vNQ=";
-
-        //static string _subscriptionName = "quadfectaproductsync";
-        static string _subscriptionName;// = "quadfectaproductsync";
-        //static string _topicName = "products_content";
-        static string _topicName;// = "xccontenthubdemoqueue";
-        //static string _productEntityDefinition = "M.PCM.Product";
-        //static int _maxMessagesCount;// = 100;
+        static string _connectionString;
+        static string _subscriptionName;
+        static string _topicName;
         private const string ENV_NAME = "HabitatAuthoring";
         private IServiceProvider _serviceProvider;
         private CommerceEnvironment _globalEnvironment;
@@ -62,9 +48,9 @@ namespace Plugin.Sync.Commerce.CatalogImport.Controllers
         }
 
         /// <summary>
-        /// Import Content Hub entity into Commerce Sellable Item
+        /// Import mapped Content Hub entity into SellableItem in SXC.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">EntityId of Content Hub Entity to be imported into SXC SellableItem.</param>
         /// <returns></returns>
         [HttpPost]
         [Route("ImportSellableItemFromContentHub()")]
@@ -110,6 +96,11 @@ namespace Plugin.Sync.Commerce.CatalogImport.Controllers
             }
         }
 
+        /// <summary>
+        /// Import mapped Content Hub entity into Category in SXC.
+        /// </summary>
+        /// <param name="request">EntityId of Content Hub Entity to be imported into SXC Category.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("ImportCategoryFromContentHub()")]
         public async Task<IActionResult> ImportCategoryFromContentHub([FromBody] JObject request)
@@ -164,38 +155,14 @@ namespace Plugin.Sync.Commerce.CatalogImport.Controllers
             }
         }
 
-        private CommerceContext GetCommerceContext()
-        {
-            var logger = (Microsoft.Extensions.Logging.ILogger)_serviceProvider.GetService<ILogger<CommerceController>>();
-            var _nodeContext = _serviceProvider.GetService<NodeContext>();
-            ITrackActivityPipeline service = _serviceProvider.GetService<ITrackActivityPipeline>();
-            CommerceContext commerceContext = new CommerceContext(logger, new Microsoft.ApplicationInsights.TelemetryClient(), _serviceProvider.GetService<IGetLocalizableMessagePipeline>());
-            commerceContext.GlobalEnvironment = _globalEnvironment;
-            commerceContext.Environment = _globalEnvironment;
-            commerceContext.ConnectionId = Guid.NewGuid().ToString("N", (IFormatProvider)CultureInfo.InvariantCulture);
-            commerceContext.CorrelationId = Guid.NewGuid().ToString("N", (IFormatProvider)CultureInfo.InvariantCulture);
-            commerceContext.TrackActivityPipeline = service;
-            //NodeContext nodeContext = _nodeContext;
-            commerceContext.PipelineTraceLoggingEnabled = _nodeContext != null && _nodeContext.PipelineTraceLoggingEnabled;
-
-            commerceContext.Headers = new HeaderDictionary();
-            commerceContext.Headers.Add("Roles", @"sitecore\Commerce Administrator|sitecore\Customer Service Representative Administrator|sitecore\Customer Service Representative|sitecore\Commerce Business User|sitecore\Pricer Manager|sitecore\Pricer|sitecore\Promotioner Manager|sitecore\Promotioner|sitecore\Merchandiser|sitecore\Relationship Administrator");
-
-            return commerceContext;
-            //this._baseContext = commerceContext;
-        }
-
         /// <summary>
         /// Set default environment
         /// </summary>
         /// <returns></returns>
         private async Task InitializeEnvironment()
         {
-            //var commerceEnvironment = this.CurrentContext.Environment;
             var commerceEnvironment = await _getEnvironmentCommand.Process(this.CurrentContext, ENV_NAME) ??
                                       this.CurrentContext.Environment;
-            //await _getEnvironmentCommand.Process(this.CurrentContext, ENV_NAME) ??
-            //this.CurrentContext. = "CommerceEngineDefaultStorefront";
 
             this.CurrentContext.Environment = commerceEnvironment;
             this.CurrentContext.PipelineContextOptions.CommerceContext.Environment = commerceEnvironment;

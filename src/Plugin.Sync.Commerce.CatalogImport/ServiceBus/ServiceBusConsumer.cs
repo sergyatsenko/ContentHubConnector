@@ -16,8 +16,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-// = "Endpoint=sb://xccontenthubdemo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=HxyFUilEe7vGB0gXAYPnBUVQA8YaG63ElEJPkaJ5Pe4=";
-// = "xccontenthubdemoqueue"; 
 namespace Plugin.Sync.Commerce.CatalogImport.ServiceBus
 {
     public class ServiceBusConsumer : IServiceBusConsumer

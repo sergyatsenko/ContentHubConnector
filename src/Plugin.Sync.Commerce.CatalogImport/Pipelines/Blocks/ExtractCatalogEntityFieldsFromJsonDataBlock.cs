@@ -2,15 +2,9 @@
 using Plugin.Sync.Commerce.CatalogImport.Extensions;
 using Plugin.Sync.Commerce.CatalogImport.Models;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
-using Plugin.Sync.Commerce.CatalogImport.Policies;
 using Sitecore.Commerce.Core;
-using Sitecore.Commerce.Plugin.Catalog;
-using Sitecore.Data.Clones.ItemSourceUriProviders;
-using Sitecore.Data.Comparers;
-using Sitecore.Data.Query;
 using Sitecore.Framework.Conditions;
 using Sitecore.Framework.Pipelines;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,27 +1,22 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using Plugin.Sync.Commerce.CatalogImport.Extensions;
 using Plugin.Sync.Commerce.CatalogImport.Helpers;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Plugin.Sync.Commerce.CatalogImport.Policies;
-//using Serilog;
 using Sitecore.Commerce.Core;
-using Sitecore.Data.Eventing.Remote;
 using Sitecore.Diagnostics;
 using Sitecore.Framework.Caching;
 using Sitecore.Framework.Pipelines;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
 {
     /// <summary>
     /// Retrieve Content Hub entity via its API
-    /// TODO: refactor this to use CH nuget instead of direct HTTP REST calls
+    /// TODO: consider refactoring this class to use CH nuget instead of direct HTTP REST calls
     /// </summary>
     [PipelineDisplayName("GetContentHubEntityBlock")]
     public class GetContentHubEntityBlock : PipelineBlock<ImportCatalogEntityArgument, ImportCatalogEntityArgument, CommercePipelineExecutionContext>

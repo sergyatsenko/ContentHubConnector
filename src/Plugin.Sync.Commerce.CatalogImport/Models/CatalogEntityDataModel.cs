@@ -9,7 +9,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Models
         public string EntityId { get; set; }
         public string EntityName { get; set; }
         public string CatalogName { get; set; }
-        //public string ParentCategoryName { get; set; }
         public Dictionary<string, string> EntityFields { get; set; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         public string CommerceEntityId { get; set; }
         public List<string> ParentEntityIDs { get; set; }

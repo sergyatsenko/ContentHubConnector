@@ -1,5 +1,4 @@
-﻿using Plugin.Sync.Commerce.CatalogImport.Extensions;
-using Plugin.Sync.Commerce.CatalogImport.Models;
+﻿using Plugin.Sync.Commerce.CatalogImport.Models;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Serilog;
 using Sitecore.Commerce.Core;
@@ -23,7 +22,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
     {
         #region Private fields
         private readonly CommerceCommander _commerceCommander;
-        private readonly CommerceEntityImportHelper _importHelper;
         private readonly GetManagedListCommand _getManagedListCommand;
         private readonly DeleteRelationshipCommand _deleteRelationshipCommand;
         #endregion
@@ -41,7 +39,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
             _commerceCommander = commerceCommander;
             _deleteRelationshipCommand = deleteRelationshipCommand;
             _getManagedListCommand = getManagedListCommand;
-            _importHelper = new CommerceEntityImportHelper(commerceCommander, composerCommander);
         }
 
         /// <summary>
@@ -96,7 +93,7 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
 
                 category = await _commerceCommander.Command<FindEntityCommand>().Process(context.CommerceContext, typeof(Category), category.Id) as Category;
 
-                //Check code running before this - this persist might be redindant
+                //TODO: Check code running before this - this persist might be redindant
                 //var persistResult = await _commerceCommander.Pipeline<IPersistEntityPipeline>().Run(new PersistEntityArgument(category), context);
                 if (category == null)
                 {

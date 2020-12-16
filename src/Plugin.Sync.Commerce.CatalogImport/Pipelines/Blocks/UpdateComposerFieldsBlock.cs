@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Plugin.Sync.Commerce.CatalogImport.Extensions;
+﻿using Plugin.Sync.Commerce.CatalogImport.Extensions;
 using Plugin.Sync.Commerce.CatalogImport.Models;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Serilog;
@@ -27,7 +26,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
         #region Private fields
         private readonly ComposerCommander _composerCommander;
         private readonly CommerceCommander _commerceCommander;
-        private readonly CommerceEntityImportHelper _importHelper;
         #endregion
 
         #region Public methods
@@ -41,7 +39,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
         {
             _commerceCommander = commerceCommander;
             _composerCommander = composerCommander;
-            _importHelper = new CommerceEntityImportHelper(commerceCommander, composerCommander);
         }
 
         /// <summary>
@@ -137,7 +134,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
                 }
             }
 
-            //Save an updated entity if changes were made
             if (isUpdated)
             {
                 return await _composerCommander.PersistEntity(context, commerceEntity);

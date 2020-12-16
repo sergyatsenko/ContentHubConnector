@@ -1,12 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-using Plugin.Sync.Commerce.CatalogImport.Pipelines;
+﻿using Plugin.Sync.Commerce.CatalogImport.Pipelines;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Sitecore.Commerce.Core;
 using Sitecore.Commerce.Core.Commands;
+using System;
+using System.Threading.Tasks;
 
 namespace Plugin.Sync.Commerce.CatalogImport.Commands
 {
+    /// <summary>
+    /// Import mapped Content Hub entity into Category in SXC
+    /// </summary>
     public class ImportCategoryFromContentHubCommand : CommerceCommand
     {
         private readonly IImportCategoryFromContentHubPipeline _pipeline;

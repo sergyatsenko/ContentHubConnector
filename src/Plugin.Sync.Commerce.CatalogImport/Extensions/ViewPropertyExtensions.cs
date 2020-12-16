@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
-using Sitecore.Commerce.EntityViews;
+﻿using Sitecore.Commerce.EntityViews;
+using System;
 
 namespace Plugin.Sync.Commerce.CatalogImport.Extensions
 {

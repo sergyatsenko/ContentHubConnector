@@ -27,7 +27,5 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments
             this.MappingConfiguration = mappingConfiguration;
             CommerceEntityType = commerceEntityType;
         }
-
-       
     }
 }

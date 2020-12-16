@@ -1,6 +1,4 @@
-﻿// © 2017 Sitecore Corporation A/S. All rights reserved. Sitecore® is a registered trademark of Sitecore Corporation A/S.
-
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using Microsoft.AspNetCore;

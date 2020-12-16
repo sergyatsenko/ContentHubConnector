@@ -1,5 +1,4 @@
-﻿using Plugin.Sync.Commerce.CatalogImport.Extensions;
-using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
+﻿using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Sitecore.Commerce.Core;
 using Sitecore.Commerce.Plugin.Composer;
 using Sitecore.Framework.Pipelines;
@@ -16,7 +15,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
         #region Private fields
         private readonly CommerceCommander _commerceCommander;
         private readonly ComposerCommander _composerCommander;
-        private readonly CommerceEntityImportHelper _importHelper;
         #endregion
 
         #region Public methods
@@ -30,7 +28,6 @@ namespace Plugin.Sync.Commerce.CatalogImport.Pipelines.Blocks
         {
             _commerceCommander = commerceCommander;
             _composerCommander = composerCommander;
-            _importHelper = new CommerceEntityImportHelper(commerceCommander, composerCommander);
         }
 
         /// <summary>
