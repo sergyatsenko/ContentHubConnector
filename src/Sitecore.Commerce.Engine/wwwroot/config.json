@@ -17,7 +17,11 @@
     "AntiForgeryEnabled": false,
     "CommerceServicesHostPostfix": "sc9.com",
     "UseHttpsInKestrel": false,
-    "EnableContentHubSync": false
+    "EnableContentHubSync": false,
+    "ServiceBusConnectionString": "Endpoint=sb://xccontenthubdemo.servicebus.windows.net/;SharedAccessKeyName=ManageSendListenAccessKey;SharedAccessKey=XWWm4N78ZewXzLJHkA0C1wxwqaFBABQFrKth8/U+vNQ=",
+    "ServiceBusTopicName": "xccontenthubdemoqueue",
+    "ServiceBusSubscriptionName": "quadfectaproductsync"
+
   },
   "ApplicationInsights": {
     "InstrumentationKey": ""

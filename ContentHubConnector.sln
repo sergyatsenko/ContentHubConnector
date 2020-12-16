@@ -28,8 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CopyToRoot", "CopyToRoot", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Sync.Commerce.CatalogImport", "src\Plugin.Sync.Commerce.CatalogImport\Plugin.Sync.Commerce.CatalogImport.csproj", "{E44B7FAD-8EB3-471A-9351-4E3BD7A39476}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Sync.Commerce.EntitiesMigration", "src\Plugin.Sync.Commerce.EntitiesMigration\Plugin.Sync.Commerce.EntitiesMigration.csproj", "{8C5D12B9-0433-4398-AE28-53E5BEA18369}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,10 +46,6 @@ Global
 		{E44B7FAD-8EB3-471A-9351-4E3BD7A39476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E44B7FAD-8EB3-471A-9351-4E3BD7A39476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E44B7FAD-8EB3-471A-9351-4E3BD7A39476}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C5D12B9-0433-4398-AE28-53E5BEA18369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C5D12B9-0433-4398-AE28-53E5BEA18369}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C5D12B9-0433-4398-AE28-53E5BEA18369}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C5D12B9-0433-4398-AE28-53E5BEA18369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,7 +56,6 @@ Global
 		{0946C395-5DF9-48DA-BB53-DC5CA2A4BEFE} = {3A330984-9652-4DA1-99D3-B55E6DEAC6AA}
 		{541693FF-FDF0-4257-8EF4-814D8B2C3E21} = {0946C395-5DF9-48DA-BB53-DC5CA2A4BEFE}
 		{E44B7FAD-8EB3-471A-9351-4E3BD7A39476} = {389FC06B-F543-41B8-9874-726DA9878DDC}
-		{8C5D12B9-0433-4398-AE28-53E5BEA18369} = {389FC06B-F543-41B8-9874-726DA9878DDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32813392-1C11-4D75-BF11-1ECBEF674669}

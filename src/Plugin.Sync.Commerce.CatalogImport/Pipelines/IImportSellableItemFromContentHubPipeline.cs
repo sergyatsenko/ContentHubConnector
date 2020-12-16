@@ -1,5 +1,4 @@
-﻿using Plugin.Sync.Commerce.CatalogImport.Entities;
-using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
+﻿using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Sitecore.Commerce.Core;
 using Sitecore.Framework.Pipelines;
 

@@ -52,7 +52,7 @@ namespace Plugin.Sync.Commerce.CatalogImport.ServiceBus
             _getEnvironmentCommand = getEnvironmentCommand;
             _commerceCommander = commerceCommander;
             _logger = logger;
-            _connectionString = configuration.GetConnectionString("ServiceBusConnectionString");
+            _connectionString = configuration.GetConnectionString("AppSettings:ServiceBusConnectionString");
             _topicName = configuration.GetValue<string>("AppSettings:ServiceBusTopicName");
             _queueClient = new QueueClient(_connectionString, _topicName);
             this._nodeContext = serviceProvider.GetService<NodeContext>();

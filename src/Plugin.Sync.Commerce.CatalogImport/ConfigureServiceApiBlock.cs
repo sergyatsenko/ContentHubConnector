@@ -24,12 +24,6 @@ namespace Plugin.Sync.Commerce.CatalogImport
         {
             Condition.Requires(modelBuilder).IsNotNull($"{this.Name}: The argument cannot be null.");
 
-            var importCategory = modelBuilder.Action("ImportCategory");
-            importCategory.ReturnsFromEntitySet<CommerceCommand>("Commands");
-
-            var importSellableItem = modelBuilder.Action("ImportSellableItem");
-            importSellableItem.ReturnsFromEntitySet<CommerceCommand>("Commands");
-
             var importSellableItemFromContentHub = modelBuilder.Action("ImportSellableItemFromContentHub");
             importSellableItemFromContentHub.ReturnsFromEntitySet<CommerceCommand>("Commands");
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Plugin.Sync.Commerce.CatalogImport.Entities;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines;
 using Plugin.Sync.Commerce.CatalogImport.Pipelines.Arguments;
 using Sitecore.Commerce.Core;

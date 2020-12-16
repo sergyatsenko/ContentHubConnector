@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugin.Sync.Commerce.CatalogImport.Entities;
 using Sitecore.Commerce.Core;
 using Sitecore.Commerce.Plugin.Catalog;
 using Sitecore.Commerce.Plugin.Pricing;
@@ -36,16 +35,16 @@ namespace Plugin.Sync.Commerce.CatalogImport.Extensions
             return listPricingPolicy.Prices.ToList()[0].Amount;
         }
 
-        public static void AddVariantListPrice(this ImportCatalogEntityResponse sellableItem, decimal sellableItemListPrice, ItemVariationComponent variant)
-        {
-            if (sellableItemListPrice == 0)
-            {
-                return;
-            }
+        //public static void AddVariantListPrice(this ImportCatalogEntityResponse sellableItem, decimal sellableItemListPrice, ItemVariationComponent variant)
+        //{
+        //    if (sellableItemListPrice == 0)
+        //    {
+        //        return;
+        //    }
 
-            var listPricingPolicy = variant.GetPolicy<ListPricingPolicy>();
-            listPricingPolicy.AddPrice(new Money("USD", sellableItemListPrice));
-        }
+        //    var listPricingPolicy = variant.GetPolicy<ListPricingPolicy>();
+        //    listPricingPolicy.AddPrice(new Money("USD", sellableItemListPrice));
+        //}
 
         //public static void UpdateSellableItem(this SellableItemResponse sellableItem, Dictionary<string, string> sellableItemModel)
         //{
