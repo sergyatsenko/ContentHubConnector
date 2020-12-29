@@ -18,8 +18,33 @@ Here's another representation of the sync mechanism used in Commerce Catalog usi
 
 [Connector notifications]()
 
+### Key concepts
+* When data is being read from CH I use CH's RESTful API to read and navigate through CH data entities, so no entity or field names are hard-coded there.
+* When data is being saved to SCX, I lookup the target field by its name, which comes from the configuration, so (almost) no entity or field names are hard-coded on the SXC side either.
+* CH has a mechanism for notifying subscribers about data changes via Azure Service Bus - I listen to these messages to trigger sync on each change, so the sync process is close to real-time
+* "Mapping configurations" is a set of SXC configuration policies, which maps SXC catalog items and their fields to CH entities and fields inside them. Any field on SXC item (native, custom, Composer fields) can be mapped to CH and populated from there. The left side of each mapping is the name of the SXC item field and the right side is the JSON path to where its value can be found in CH Entity, here's an example
+"Brand": "properties.SAPBrand",
+"Manufacturer": "Manufacturer",
+"TypeOfGoods": "TypeOfGoods",
+"DisplayName": "properties.ProductName",
+"Description": "properties.ShortDescription.en-US"
 
-
+### Feature list
+* Sync entities from multiple Content Hub instances into separate catalogs on the same SXC instance
+* Listening to Azure Service Bus queue, populated by CH (same mechanism as in Sitecore CMP connector). Reads an ID or updated/created/deleted entity, retrieves JSON of that and all related entities and updates/creates/deletes target Catalog item in SXC
+* Optional support for item versioning and workflows (e.g. overwrite drafts, but create new versions for published items)
+* Support updating any native, custom, and composer fields on target Categories, Sellable Items, and Variants (minus Composer fields on Variants as SXC don't support that)
+* Optional support for syncing list prices from CH
+* Import one or multiple CH asset public link URLs into single or multiple fields on SXC Catalog items
+* Using Azure service bus reader for close to real-time sync
+* Utilizing CH RESTful APIs in a generic way, which allows populating SXC item fields with data values
+* An option to clear out target field on already existing SXC catalog items when a mapped value is no longer present in source (CH)
+* Optional audit log tracking all sync events and failures with detailed info on fields updated
+* Support for mapping configuration policies, which allows defining a dictionary-like structure, which allows mapping SXC item field names (keys) to JSON path, pointing to value to be populated from CH entity (value)
+* Support for relations navigation/traversing of CH entities, allowing to extract data fields from related entities (parent, child, one to one, one to many and many to many relationships are all supported). Navigable entities are specified in on the same mapping policies as field mapping
+* Ability to navigate to related Entities
+* Separate mapping configuration policies to map SXC Category, Sellable Item, and Variant fields to appropriate CH entities
+* Ability to associate more than one CH entity types with one SXC catalog entity, using separate mapping configurations, linking different CH schema types with target Catalog item in SXC. e.g. both EntityA and EntityB can be mapped to one SellableItem (or Category or Variant)
 
 
 ## Setting up Azure Service Bus and Scrip, Action, Trigger in Content Hub
